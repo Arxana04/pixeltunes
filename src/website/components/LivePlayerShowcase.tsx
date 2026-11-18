@@ -13,6 +13,7 @@ const SHOWCASE_COVERS = [
   { name: 'Saturn Galaxy', file: '/covers/00_saturn_galaxy.png', track: 'COSMIC DUST' },
   { name: 'Cyber Butterfly', file: '/covers/22_cyber_butterfly.gif', track: 'SYNTHWAVE DREAMS' },
   { name: 'Celestial Star', file: '/covers/23_celestial_star.gif', track: 'ASTRAL SUPERNOVA' },
+  { name: 'Daisy Pond', file: '/covers/24_daisy_pond.gif', track: 'CRYSTAL WATERS' },
 ];
 
 interface LivePlayerShowcaseProps {

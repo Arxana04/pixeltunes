@@ -32,6 +32,7 @@ export const PIXEL_COVERS: PixelCover[] = [
   { id: 'pastel_beach', name: 'Pastel Beach', type: 'gif', src: './covers/21_pastel_beach.gif' },
   { id: 'cyber_butterfly', name: 'Cyber Butterfly', type: 'gif', src: './covers/22_cyber_butterfly.gif' },
   { id: 'celestial_star', name: 'Celestial Star', type: 'gif', src: './covers/23_celestial_star.gif' },
+  { id: 'daisy_pond', name: 'Daisy Pond', type: 'gif', src: './covers/24_daisy_pond.gif' },
 ];
 
 /**

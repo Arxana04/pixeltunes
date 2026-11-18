@@ -269,8 +269,15 @@ function finishSpotifyAuth(res, outcome, login, payload = {}) {
 }
 
 function startPersistentAuthServer() {
+  if (persistentAuthServer && persistentAuthServer.listening) {
+    return Promise.resolve(true);
+  }
   return new Promise((resolve) => {
-    persistentAuthServer = http.createServer(async (req, res) => {
+    if (persistentAuthServer) {
+      try { persistentAuthServer.close(); } catch {}
+      persistentAuthServer = null;
+    }
+    const server = http.createServer(async (req, res) => {
       res.setHeader('Cache-Control', 'no-store');
       res.setHeader('Referrer-Policy', 'no-referrer');
       res.setHeader('Content-Type', 'text/plain; charset=utf-8');
@@ -362,12 +369,24 @@ function startPersistentAuthServer() {
       }
     });
 
-    persistentAuthServer.once('error', (err) => {
+    server.once('error', (err) => {
       console.warn('[Spotify] Could not start the loopback callback:', err.code);
+      try { server.close(); } catch {}
+      if (persistentAuthServer === server) persistentAuthServer = null;
       resolve(false);
     });
-    persistentAuthServer.listen(8888, '127.0.0.1', () => resolve(true));
+    server.listen(8888, '127.0.0.1', () => {
+      persistentAuthServer = server;
+      resolve(true);
+    });
   });
+}
+
+function ensureAuthServerReady() {
+  if (persistentAuthServer && persistentAuthServer.listening) {
+    return Promise.resolve(true);
+  }
+  return startPersistentAuthServer();
 }
 
 let authServerReady;
@@ -1027,7 +1046,12 @@ handle('window:dock-to-menubar', () => {
 handle('auth:has-session', async () => Boolean(await loadRefreshToken()));
 
 handle('auth:login', async (clientId, presentation) => {
-  if (!await authServerReady) return { success: false, error: 'Spotify callback port 8888 is unavailable.' };
+  if (!await ensureAuthServerReady()) {
+    return {
+      success: false,
+      error: 'Spotify callback port 8888 is unavailable. Please quit any other running PixelTunes app or process using port 8888.',
+    };
+  }
 
   if (clientId !== undefined && (typeof clientId !== 'string' || !/^[a-f0-9]{32}$/i.test(clientId))) {
     return { success: false, error: 'Enter the 32-character Client ID from your Spotify Developer Dashboard.' };

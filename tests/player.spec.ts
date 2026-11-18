@@ -129,14 +129,14 @@ test('motion preference freezes cassette and cover GIFs and tracks OS changes', 
   await expect(page.locator('.animate-pixel-spark')).toHaveCount(0);
 });
 
-test('all 26 covers are reachable in one cycle and every GIF decodes', async ({ page }) => {
+test('all 27 covers are reachable in one cycle and every GIF decodes', async ({ page }) => {
   await openGuest(page);
   await play(page).click();
   const cover = page.getByRole('button', { name: /shuffle pixel cover/i });
   await expect(cover).toHaveAttribute('title', 'Pixel Cover: Moon Bunny');
   const seen = new Set<string>();
   let gifs = 0;
-  for (let i = 0; i < 26; i++) {
+  for (let i = 0; i < 27; i++) {
     const title = (await cover.getAttribute('title'))!;
     expect(seen.has(title)).toBe(false);
     seen.add(title);
@@ -147,7 +147,7 @@ test('all 26 covers are reachable in one cycle and every GIF decodes', async ({ 
     }
     await cover.click();
   }
-  expect(gifs).toBe(23);
+  expect(gifs).toBe(24);
   await expect(cover).toHaveAttribute('title', 'Pixel Cover: Moon Bunny');
 });
 

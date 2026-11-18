@@ -26,6 +26,7 @@ const GALLERY_ITEMS: ArtItem[] = [
   { name: 'PASTEL BEACH', file: '/covers/21_pastel_beach.gif', era: 'RETRO LO-FI', vibe: 'Gentle Ocean Shoreline' },
   { name: 'CYBER BUTTERFLY', file: '/covers/22_cyber_butterfly.gif', era: 'SYNTHWAVE', vibe: 'Neon Glitch Flight' },
   { name: 'CELESTIAL STAR', file: '/covers/23_celestial_star.gif', era: 'ASTRAL 16-BIT', vibe: 'Celestial Supernova Pulse' },
+  { name: 'DAISY POND', file: '/covers/24_daisy_pond.gif', era: 'CRYSTAL WATER', vibe: 'Floating Daisies & Shimmering Waves' },
 ];
 
 export const PixelArtGallery: React.FC = () => {
@@ -37,7 +38,7 @@ export const PixelArtGallery: React.FC = () => {
         {/* Section Stamped Header */}
         <div className="flex flex-col items-center text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#191244] border border-white/20 text-[#fffdf5] font-silkscreen text-[9.5px] tracking-[0.2em] shadow-pixel-sm mb-4">
-            <span className="text-[#fec5db]">[ 05 // 26 NOSTALGIC COVERS ]</span>
+            <span className="text-[#fec5db]">[ 05 // 27 NOSTALGIC COVERS ]</span>
             <span className="text-white/30">|</span>
             <span className="text-[#9df0cf]">ANIMATED 16-BIT VISUALS</span>
           </div>
@@ -46,7 +47,7 @@ export const PixelArtGallery: React.FC = () => {
             NOSTALGIA IN MOTION.
           </h2>
           <p className="mt-3 text-sm sm:text-base font-sans text-[#cbd5e1] max-w-xl">
-            PixelTunes includes 26 animated pixel scenes that cycle during playback, freeze on reduced-motion
+            PixelTunes includes 27 animated pixel scenes that cycle during playback, freeze on reduced-motion
             systems, and respond to your active retro palette.
           </p>
         </div>
