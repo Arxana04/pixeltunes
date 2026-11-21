@@ -100,6 +100,13 @@ jobs:
           bundle="release/PixelTunes-darwin-$ARCH/PixelTunes.app"
           codesign --verify --deep --strict "$bundle"
           ditto -c -k --sequesterRsrc --keepParent "$bundle" "PixelTunes-$ASSET.zip"
+          # Drag-to-install disk image: the app plus an /Applications shortcut.
+          staging="$RUNNER_TEMP/dmg"
+          rm -rf "$staging" && mkdir -p "$staging"
+          ditto "$bundle" "$staging/PixelTunes.app"
+          ln -s /Applications "$staging/Applications"
+          hdiutil create -volname "PixelTunes" -srcfolder "$staging" -ov -format UDZO "PixelTunes-$ASSET.dmg"
+          hdiutil verify "PixelTunes-$ASSET.dmg"
       - name: Archive Windows app
         if: runner.os == 'Windows'
         shell: pwsh
@@ -112,7 +119,9 @@ jobs:
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: ${{ matrix.asset }}
-          path: PixelTunes-${{ matrix.asset }}.zip
+          path: |
+            PixelTunes-${{ matrix.asset }}.zip
+            PixelTunes-${{ matrix.asset }}.dmg
           if-no-files-found: error
           compression-level: 0
 
@@ -150,9 +159,9 @@ jobs:
           git push --atomic origin "HEAD:refs/heads/$GITHUB_REF_NAME" "refs/tags/v$RELEASE_VERSION"
           if [[ "$RELEASE_PREVIEW" == true ]]; then
             # Marked latest so the website's /releases/latest/download links resolve.
-            gh release create "v$RELEASE_VERSION" archives/PixelTunes-*.zip --verify-tag --generate-notes --latest \
+            gh release create "v$RELEASE_VERSION" archives/PixelTunes-* --verify-tag --generate-notes --latest \
               --title "PixelTunes v$RELEASE_VERSION (Preview)" \
               --notes "> **Preview build.** The PixelTunes Spotify app is still in Spotify Development mode, so Spotify sign-in only works for accounts the maintainer has allowlisted. The built-in lo-fi radio works for everyone."
           else
-            gh release create "v$RELEASE_VERSION" archives/PixelTunes-*.zip --verify-tag --generate-notes
+            gh release create "v$RELEASE_VERSION" archives/PixelTunes-* --verify-tag --generate-notes
           fi

@@ -86,7 +86,7 @@ export const SpecsComparison: React.FC = () => {
                   }}
                   className="text-center font-silkscreen text-[8.5px] text-[#cbd5e1]/70 hover:text-[#fec5db] underline mt-1"
                 >
-                  Or download Intel x64 package (.zip)
+                  Or download Intel x64 package (.dmg)
                 </a>
               </div>
             </div>

@@ -92,7 +92,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               SETTINGS.INI
             </span>
             <span className={`${compact ? 'hidden' : ''} px-1.5 py-0.5 bg-[#fffdf5] text-[#191244] border border-[#191244] font-pixel text-[7.5px] font-bold shadow-pixel-xs`}>
-              v1.2.1
+              v1.2.2
             </span>
           </div>
           <div className="flex items-center gap-2 shrink-0 app-no-drag">
@@ -480,7 +480,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           <div className="pt-2 flex justify-between items-center select-none">
             <div className={`flex items-center gap-1.5 opacity-70 ${compact ? 'hidden' : ''}`}>
               <span className="font-pixel text-[8px] text-[#191244] font-bold">
-                PIXELTUNES v1.2.1
+                PIXELTUNES v1.2.2
               </span>
               <span className="text-[7.5px] text-[#191244] font-sans">
                 (90s Retro Music Player)
