@@ -70,10 +70,8 @@ function getSpotifyClientIdPath() {
 function rememberSpotifyClientId(clientId) {
   lastClientId = clientId;
   try {
-    const file = getSpotifyClientIdPath();
-    if (!fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== clientId) {
-      fs.writeFileSync(file, clientId, { mode: 0o600 });
-    }
+    // Write unconditionally: a check-then-write sequence is a TOCTOU race.
+    fs.writeFileSync(getSpotifyClientIdPath(), clientId, { mode: 0o600 });
   } catch {
     console.warn('[Spotify] Could not save the Spotify Client ID preference.');
   }
