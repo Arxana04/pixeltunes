@@ -74,9 +74,16 @@ export const AutoLaunchPermissionModal: React.FC<AutoLaunchPermissionModalProps>
         <div className="p-4 bg-[#fffdf5] text-[#191244] font-pixel space-y-3">
           <div className="flex items-start gap-3">
             {/* Pixelated Spotify Logo Icon */}
-            <div className="w-10 h-10 shrink-0 bg-[#fffdf5] border-2 border-[#191244] flex items-center justify-center shadow-pixel-xs">
-              <img src="./spotify-logo.svg" alt="Spotify" className="w-[110px] h-auto" style={{ imageRendering: 'auto' }} />
-            </div>
+            {/* Masked so the wordmark has no backing tile and blends with the panel */}
+            <span
+              role="img"
+              aria-label="Spotify"
+              className="block shrink-0 w-[96px] h-[26px] mt-0.5 bg-[#191244]"
+              style={{
+                WebkitMask: 'url(./spotify-logo.svg) left center / contain no-repeat',
+                mask: 'url(./spotify-logo.svg) left center / contain no-repeat',
+              }}
+            />
             <div className="space-y-1">
               <h3 className="text-[12px] font-bold text-[#191244] tracking-wide">
                 AUTO-LAUNCH SPOTIFY APP?

@@ -404,6 +404,9 @@ function createWindow() {
     frame: false,
     transparent: true,
     hasShadow: false,
+    // The renderer draws its own rounded frame; OS corner masking would
+    // clip through the 4px pixel border and leave uneven corners.
+    roundedCorners: false,
     resizable: true,
     minimizable: true,
     fullscreenable: false,
