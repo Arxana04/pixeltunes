@@ -137,7 +137,7 @@ export const DownloadButtons: React.FC<DownloadButtonsProps> = ({
             <Download className="w-3 h-3 text-[#8fa2d4]" />
           </span>
           <span className="font-silkscreen text-[8.5px] text-[#cbd5e1]/70 mt-0.5">
-            Apple Silicon & Intel (.zip)
+            Apple Silicon & Intel (.dmg)
           </span>
         </div>
       </a>

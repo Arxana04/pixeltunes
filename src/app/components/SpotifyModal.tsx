@@ -12,7 +12,7 @@ import {
   playPlaylist,
 } from '../services/spotify';
 import { SpotifyDevice } from '../../types/spotify';
-import { parseSpotifyLink } from '../services/spotifyLinks';
+import { parseSpotifyLink, buildSafeSpotifyUrl } from '../services/spotifyLinks';
 import { playClickSound } from '../../shared/services/soundEffects';
 
 interface SpotifyModalProps {
@@ -50,6 +50,7 @@ export const SpotifyModal: React.FC<SpotifyModalProps> = ({
   const [linkStatus, setLinkStatus] = useState('');
   const [linkPending, setLinkPending] = useState(false);
   const spotifyLink = parseSpotifyLink(linkInput);
+  const safeSpotifyUrl = spotifyLink ? buildSafeSpotifyUrl(spotifyLink) : undefined;
   const [copiedRedirect, setCopiedRedirect] = useState(false);
 
 
@@ -267,7 +268,7 @@ export const SpotifyModal: React.FC<SpotifyModalProps> = ({
                 <button type="button" disabled={linkPending} onClick={() => { void handleSpotifyLink(true); }}
                   className="px-2 py-1 bg-[#ffd269] border border-[#191244] font-pixel text-[8px]">ADD TO QUEUE</button>
               )}
-              {spotifyLink && <a href={`https://open.spotify.com/${spotifyLink.type}/${encodeURIComponent(spotifyLink.id)}`} target="_blank" rel="noopener noreferrer"
+              {safeSpotifyUrl && <a href={safeSpotifyUrl} target="_blank" rel="noopener noreferrer"
                 className="px-2 py-1 bg-[#fec5db] border border-[#191244] font-pixel text-[8px]">OPEN IN SPOTIFY ↗</a>}
             </div>
             {linkStatus && <p role="status" className="font-pixel text-[8px]">{linkStatus}</p>}

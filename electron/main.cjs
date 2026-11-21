@@ -412,7 +412,7 @@ function createWindow() {
     fullscreenable: false,
     alwaysOnTop: isAlwaysOnTop,
     backgroundColor: '#00000000',
-    title: 'Pixeltunes v1.2.1 - Pixel Music Player',
+    title: 'Pixeltunes v1.2.2 - Pixel Music Player',
     icon: appIconPath,
     webPreferences: {
       preload: path.join(__dirname, 'preload.cjs'),
@@ -649,7 +649,7 @@ function buildTrayMenu() {
     },
     { label: 'Open Spotify', click: () => { void openSpotify(); } },
     { type: 'separator' },
-    { label: 'PixelTunes v1.2.1', enabled: false },
+    { label: 'PixelTunes v1.2.2', enabled: false },
     {
       label: 'Quit PixelTunes',
       click: () => {

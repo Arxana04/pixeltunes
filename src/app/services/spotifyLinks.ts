@@ -26,3 +26,28 @@ export function getSpotifyItemUrl(uri: string) {
   const episode = /^spotify:episode:([A-Za-z0-9]{22})$/.exec(uri);
   return episode ? `https://open.spotify.com/episode/${episode[1]}` : parseSpotifyLink(uri)?.url;
 }
+
+const SPOTIFY_URL_PREFIX = {
+  track: 'https://open.spotify.com/track/',
+  album: 'https://open.spotify.com/album/',
+  playlist: 'https://open.spotify.com/playlist/',
+} as const;
+const ID_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+/**
+ * Build an open.spotify.com URL for a parsed link without carrying user text
+ * into the result: the prefix comes from a constant table and every ID
+ * character is re-read from a fixed alphabet. Returns undefined if anything
+ * falls outside those sets.
+ */
+export function buildSafeSpotifyUrl(link: { type: SpotifyLinkType; id: string }): string | undefined {
+  const prefix = SPOTIFY_URL_PREFIX[link.type as keyof typeof SPOTIFY_URL_PREFIX];
+  if (!prefix || link.id.length !== 22) return undefined;
+  let id = '';
+  for (const ch of link.id) {
+    const index = ID_ALPHABET.indexOf(ch);
+    if (index < 0) return undefined;
+    id += ID_ALPHABET.charAt(index);
+  }
+  return prefix + id;
+}
