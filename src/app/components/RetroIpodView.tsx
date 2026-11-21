@@ -125,7 +125,7 @@ export const RetroIpodView: React.FC<RetroIpodViewProps> = ({
       },
     },
     {
-      label: 'About: v1.2.0',
+      label: 'About: v1.2.1',
       hasArrow: true,
       action: onOpenSettings,
     },
