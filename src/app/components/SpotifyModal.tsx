@@ -267,7 +267,7 @@ export const SpotifyModal: React.FC<SpotifyModalProps> = ({
                 <button type="button" disabled={linkPending} onClick={() => { void handleSpotifyLink(true); }}
                   className="px-2 py-1 bg-[#ffd269] border border-[#191244] font-pixel text-[8px]">ADD TO QUEUE</button>
               )}
-              {spotifyLink && <a href={spotifyLink.url} target="_blank" rel="noopener noreferrer"
+              {spotifyLink && <a href={`https://open.spotify.com/${spotifyLink.type}/${encodeURIComponent(spotifyLink.id)}`} target="_blank" rel="noopener noreferrer"
                 className="px-2 py-1 bg-[#fec5db] border border-[#191244] font-pixel text-[8px]">OPEN IN SPOTIFY ↗</a>}
             </div>
             {linkStatus && <p role="status" className="font-pixel text-[8px]">{linkStatus}</p>}
