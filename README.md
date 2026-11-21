@@ -8,8 +8,8 @@
 
 <p>
   <a href="https://pixeltunes.vercel.app"><img src="https://img.shields.io/badge/Vercel-Live%20Demo-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo"></a>
-  <a href="https://github.com/Mxhi-04/Pixeltunes"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Repo"></a>
-  <a href="https://github.com/Mxhi-04/Pixeltunes/stargazers"><img src="https://img.shields.io/github/stars/Mxhi-04/Pixeltunes?style=for-the-badge&color=fec5db&labelColor=191244" alt="GitHub Stars"></a>
+  <a href="https://github.com/Arxana04/pixeltunes"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Repo"></a>
+  <a href="https://github.com/Arxana04/pixeltunes/stargazers"><img src="https://img.shields.io/github/stars/Arxana04/pixeltunes?style=for-the-badge&color=fec5db&labelColor=191244" alt="GitHub Stars"></a>
   <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Web-8fa2d4?style=for-the-badge&labelColor=191244" alt="Platforms">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-9df0cf?style=for-the-badge&labelColor=191244&logoColor=191244" alt="License"></a>
 </p>
@@ -78,7 +78,7 @@ flowchart LR
 
 ```bash
 # Clone the repository
-git clone https://github.com/Mxhi-04/Pixeltunes.git
+git clone https://github.com/Arxana04/pixeltunes.git
 cd Pixeltunes
 
 # Install dependencies
