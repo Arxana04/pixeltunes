@@ -548,6 +548,9 @@ export const RetroWindow: React.FC<RetroWindowProps> = ({
       style={{
         borderColor: theme.primaryBorder,
         backgroundColor: theme.windowBg,
+        // Desktop windows are transparent and frameless, so round the frame
+        // here; overflow-hidden clips the title bar to the inner curve.
+        borderRadius: window.electronAPI?.isElectron ? 12 : undefined,
         boxShadow: window.electronAPI?.isElectron ? 'none' : `6px 6px 0px 0px ${theme.primaryBorder}`,
       }}
     >
